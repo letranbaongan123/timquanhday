@@ -1,4 +1,198 @@
 <!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Kết Nối Quanh Đây</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #111, #333);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .top-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .btn-location {
+      background: #0088cc;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .groups {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: #0088cc;
+      color: white;
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .location {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #00aa55;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Kết Nối Quanh Đây ❤️</h1>
+  <p>Tìm bạn mới • Cafe • Telegram Group</p>
+</header>
+
+<div class="container">
+
+  <div class="top-box">
+
+    <h2>📍 Xác nhận vị trí</h2>
+
+    <p>
+      Cho phép vị trí để xem các nhóm Telegram quanh bạn.
+    </p>
+
+    <button onclick="getLocation()" class="btn-location">
+      Xác nhận vị trí của tôi
+    </button>
+
+    <div class="location" id="location"></div>
+
+  </div>
+
+  <div class="groups" id="groups">
+
+    <div class="card">
+      <h3>🇻🇳 Toàn Quốc</h3>
+      <p>Kết nối toàn quốc.</p>
+
+      <a class="btn"
+         href="https://t.me/yourgroup_toanquoc"
+         target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🔥 TP.HCM</h3>
+      <p>Kết bạn và cafe tại Sài Gòn.</p>
+
+      <a class="btn"
+         href="https://t.me/yourgroup_hcm"
+         target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🏙 Hà Nội</h3>
+      <p>Giao lưu tại Hà Nội.</p>
+
+      <a class="btn"
+         href="https://t.me/yourgroup_hanoi"
+         target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🌊 Đà Nẵng</h3>
+      <p>Nhóm kết nối Đà Nẵng.</p>
+
+      <a class="btn"
+         href="https://t.me/yourgroup_danang"
+         target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+    <div class="card">
+      <h3>🌸 Huế</h3>
+      <p>Giao lưu và nói chuyện tại Huế.</p>
+
+      <a class="btn"
+         href="https://t.me/yourgroup_hue"
+         target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Kết Nối Quanh Đây
+</footer>
 
 <script>
 
