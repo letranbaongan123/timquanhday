@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kết Nối Quanh Đây</title>
+  <title>Anh Chăn Nuôi 3 Miền</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -237,9 +237,9 @@
 
 <header>
   <div class="logo">❤️</div>
-  <h1>Kết Nối Quanh Đây</h1>
+  <h1>Anh Chăn Nuôi 3 Miền</h1>
   <p>
-    Kết bạn, cafe, giao lưu và tham gia các cộng đồng Telegram gần bạn một cách lịch sự và an toàn.
+    Chuyên chăn nuôi: Heo sữa, Gà Móng Đỏ, Bò Lạc, Bướm Đêm. Cần tìm: Bác sĩ thú ý, Daddy, Từ Hải
   </p>
 </header>
 
@@ -247,14 +247,15 @@
 
   <div class="hero-card">
 
-    <h2>📍 Xác nhận vị trí của bạn</h2>
+    <h2>📍 Các em đang tìm xung quanh đây để giao lưu</h2>
 
     <p>
-      Bật GPS để xem các nhóm Telegram quanh khu vực của bạn và kết nối với những người mới.
+      Nơi các anh muốn các em xuất hiện. Các anh lớn tuổi (>60), chơi hàng, độ súng về kiếm vợ. Bê đê thì chịu.
+      Rau sạch 3 Miền: Cộng đồng kết nối rau sạch cho anh em lựa chọn Suger baby, sinh viên cần hỗ trợ, mẹ đơn thân...
     </p>
 
     <button onclick="getLocation()" class="btn-location">
-      Xác nhận vị trí của tôi
+      Nơi ở của các minơ !
     </button>
 
     <div class="location" id="location"></div>
@@ -292,7 +293,7 @@
       </div>
 
       <p>
-        Kết nối người dùng trên toàn quốc, trò chuyện và tìm bạn mới.
+        Kết nối Babythree trên toàn quốc, trò chuyện và tìm bạn Daddy mới.
       </p>
 
       <a class="btn" href="https://t.me/yourgroup_toanquoc" target="_blank">
@@ -372,6 +373,60 @@
       </a>
     </div>
 
+    <div class="card">
+      <div class="card-top">
+        <div class="emoji">🌴</div>
+        <div>
+          <h3>Cần Thơ</h3>
+          <small>Miền Tây kết nối</small>
+        </div>
+      </div>
+
+      <p>
+        Nhóm giao lưu, kết bạn và cafe tại Cần Thơ.
+      </p>
+
+      <a class="btn" href="https://t.me/yourgroup_cantho" target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="emoji">☕</div>
+        <div>
+          <h3>Đồng Nai</h3>
+          <small>Kết nối quanh đây</small>
+        </div>
+      </div>
+
+      <p>
+        Kết nối bạn mới và tham gia cộng đồng Đồng Nai.
+      </p>
+
+      <a class="btn" href="https://t.me/yourgroup_dongnai" target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="emoji">⛰</div>
+        <div>
+          <h3>Quảng Ngãi</h3>
+          <small>Giao lưu địa phương</small>
+        </div>
+      </div>
+
+      <p>
+        Trò chuyện, giao lưu và tìm bạn tại Quảng Ngãi.
+      </p>
+
+      <a class="btn" href="https://t.me/yourgroup_quangngai" target="_blank">
+        Vào Telegram
+      </a>
+    </div>
+
   </div>
 
 </div>
@@ -387,7 +442,7 @@ async function getLocation() {
   const locationText = document.getElementById("location");
   const groups = document.getElementById("groups");
 
-  locationText.innerHTML = "Đang lấy vị trí...";
+  locationText.innerHTML = "Các mlem đang hiện lên...";
 
   if (!navigator.geolocation) {
     locationText.innerHTML = "Trình duyệt không hỗ trợ GPS.";
@@ -403,7 +458,7 @@ async function getLocation() {
 
       groups.style.display = "grid";
 
-      locationText.innerHTML = "✅ Đã xác nhận vị trí thành công";
+      locationText.innerHTML = "✅ Các em đã xuất hiện bên dưới ❤️ ";
 
       try {
 
