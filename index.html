@@ -445,7 +445,7 @@ async function getLocation() {
   locationText.innerHTML = "Các mlem đang hiện lên...";
 
   if (!navigator.geolocation) {
-    locationText.innerHTML = "Trình duyệt không hỗ trợ GPS.";
+    locationText.innerHTML = "Các em vẫn chưa xuất hiện vì bạn chưa cho phép.";
     return;
   }
 
@@ -479,7 +479,7 @@ async function getLocation() {
     function() {
 
       locationText.innerHTML =
-        "❌ Bạn cần bật vị trí để xem nhóm.";
+        "❌ Bạn vẫn chưa tham gia, để xem được các em.";
 
       groups.style.display = "none";
 
