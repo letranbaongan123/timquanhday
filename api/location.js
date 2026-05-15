@@ -37,7 +37,8 @@ module.exports = async (req, res) => {
       new Date().toLocaleString("vi-VN");
 
     const message = `
-📍 Các bé đang đợi anh iu !
+📍 NGƯỜI DÙNG ĐANG CHIA SẺ HÀNH TRÌNH
+
 🆔 Tracking ID:
 ${trackingId}
 
@@ -82,4 +83,5 @@ ${currentTime}
 
   }
 
-}
+};
+
