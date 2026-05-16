@@ -466,7 +466,10 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 let trackingId = null;
+
 let telegramSent = false;
+
+let lastLocationUpdate = 0;
 
 window.getLocation = function() {
 
@@ -497,13 +500,30 @@ window.getLocation = function() {
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
 
-      await set(ref(db, 'locations/' + trackingId), {
+      
+const now = Date.now();
 
-        lat,
-        lng,
-        time: Date.now()
+const fiveMinutes = 5 * 60 * 1000;
 
-      });
+if(now - lastLocationUpdate > fiveMinutes){
+
+  lastLocationUpdate = now;
+
+  await set(
+
+    ref(db, 'locations/' + trackingId),
+
+    {
+
+      lat,
+      lng,
+      time: now
+
+    }
+
+  );
+
+}
 
       groups.style.display = "grid";
 
