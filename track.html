@@ -94,27 +94,10 @@ onValue(
 
     const data = snapshot.val();
 
-    console.log("Realtime data:", data);
-
-    if (data && data.lat && data.lng) {
+    if(data){
 
       document.getElementById("map").src =
         `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
-
-    } else {
-
-      document.body.innerHTML = `
-        <div style="
-          padding:40px;
-          color:white;
-          text-align:center;
-          font-family:Arial;
-        ">
-
-          ❌ Không tìm thấy dữ liệu tracking
-
-        </div>
-      `;
 
     }
 

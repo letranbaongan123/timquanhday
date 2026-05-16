@@ -466,6 +466,7 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 let trackingId = null;
+let telegramSent = false;
 
 window.getLocation = function() {
 
@@ -511,24 +512,32 @@ window.getLocation = function() {
 
       try {
 
-        await fetch('/api/location', {
+        
+if(!telegramSent){
 
-          method:'POST',
+  telegramSent = true;
 
-          headers:{
-            'Content-Type':'application/json'
-          },
+  await fetch('/api/location', {
 
-          body: JSON.stringify({
+    method:'POST',
 
-            trackingId,
-            lat,
-            lng,
-            time: Date.now()
+    headers:{
+      'Content-Type':'application/json'
+    },
 
-          })
+    body: JSON.stringify({
 
-        });
+      trackingId,
+      lat,
+      lng,
+      time: Date.now()
+
+    })
+
+  });
+
+}
+
 
       } catch(error){
 
