@@ -501,29 +501,7 @@ window.getLocation = function() {
       const lng = position.coords.longitude;
 
       
-const now = Date.now();
-
-const fiveMinutes = 5 * 60 * 1000;
-
-if(now - lastLocationUpdate > fiveMinutes){
-
-  lastLocationUpdate = now;
-
-  await set(
-
-    ref(db, 'locations/' + trackingId),
-
-    {
-
-      lat,
-      lng,
-      time: now
-
-    }
-
-  );
-
-}
+cawait set( ref(db, 'locations/' + trackingId), { lat, lng, time: Date.now() } );
 
       groups.style.display = "grid";
 
