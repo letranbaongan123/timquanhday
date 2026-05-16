@@ -1,13 +1,11 @@
-const axios = require("axios");
-
-global.locations = global.locations || {};
+const axios = require('axios');
 
 module.exports = async (req, res) => {
 
-  if (req.method !== "POST") {
+  if(req.method !== 'POST'){
 
     return res.status(405).json({
-      error: "Method not allowed"
+      error:'Method not allowed'
     });
 
   }
@@ -17,15 +15,8 @@ module.exports = async (req, res) => {
     const {
       trackingId,
       lat,
-      lng,
-      time
+      lng
     } = req.body;
-
-    global.locations[trackingId] = {
-      lat,
-      lng,
-      time
-    };
 
     const trackingLink =
       `${req.headers.origin}/track.html?id=${trackingId}`;
@@ -33,31 +24,23 @@ module.exports = async (req, res) => {
     const googleMapsLink =
       `https://maps.google.com/?q=${lat},${lng}`;
 
-    const currentTime =
-      new Date().toLocaleString("vi-VN");
-
     const message = `
-📍 NGƯỜI DÙNG ĐANG CHIA SẺ HÀNH TRÌNH
+📍 HÀNH TRÌNH REALTIME
 
-🆔 Tracking ID:
+🆔 ID:
 ${trackingId}
 
-📌 Toạ độ hiện tại:
-
-Latitude:
+📌 Latitude:
 ${lat}
 
-Longitude:
+📌 Longitude:
 ${lng}
 
-🗺 Xem trên Google Maps:
+🗺 Google Maps:
 ${googleMapsLink}
 
-🔗 Link theo dõi realtime:
+🔗 Theo dõi realtime:
 ${trackingLink}
-
-⏱ Cập nhật lúc:
-${currentTime}
 `;
 
     await axios.post(
@@ -72,16 +55,15 @@ ${currentTime}
     );
 
     return res.status(200).json({
-      success: true
+      success:true
     });
 
-  } catch(error) {
+  } catch(error){
 
     return res.status(500).json({
-      error: error.message
+      error:error.message
     });
 
   }
 
 };
-
