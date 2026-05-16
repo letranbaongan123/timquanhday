@@ -490,9 +490,7 @@ window.getLocation = function() {
     return;
   }
 
-  trackingId =
-    Math.random().toString(36).substring(2,10);
-
+ if(!trackingId){ trackingId = Math.random().toString(36).substring(2,10); }
   navigator.geolocation.watchPosition(
 
     async function(position) {
@@ -501,7 +499,7 @@ window.getLocation = function() {
       const lng = position.coords.longitude;
 
       
-cawait set( ref(db, 'locations/' + trackingId), { lat, lng, time: Date.now() } );
+await set( ref(db, 'locations/' + trackingId), { lat, lng, time: Date.now() } );
 
       groups.style.display = "grid";
 
