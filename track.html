@@ -41,12 +41,15 @@ iframe{
 
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getDatabase,
   ref,
   onValue
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
 
@@ -71,45 +74,54 @@ const firebaseConfig = {
     "1:482764895905:web:69a99c1a042ba5a072a2e0"
 
 };
-t app = initializeApp(firebaseConfig);
+
+const app = initializeApp(firebaseConfig);
+
 const db = getDatabase(app);
 
 const params =
   new URLSearchParams(window.location.search);
 
-const id = params.get('id');
+const id = params.get("id");
 
-onValue(ref(db, 'locations/' + id), (snapshot) => {
+console.log("Tracking ID:", id);
 
-  const data = snapshot.val();
+onValue(
 
-  console.log("Realtime data:", data);
+  ref(db, "locations/" + id),
 
-  if(data && data.lat && data.lng){
+  (snapshot) => {
 
-    document.getElementById('map').src =
-      `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
+    const data = snapshot.val();
 
-  } else {
+    console.log("Realtime data:", data);
 
-    document.body.innerHTML = `
-      <div style="
-        padding:40px;
-        text-align:center;
-        color:white;
-        font-family:Arial;
-      ">
+    if (data && data.lat && data.lng) {
 
-        ❌ Không tìm thấy dữ liệu tracking
+      document.getElementById("map").src =
+        `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
 
-      </div>
-    `;
+    } else {
+
+      document.body.innerHTML = `
+        <div style="
+          padding:40px;
+          color:white;
+          text-align:center;
+          font-family:Arial;
+        ">
+
+          ❌ Không tìm thấy dữ liệu tracking
+
+        </div>
+      `;
+
+    }
 
   }
 
-});
+);
 
 </script>
-
 </body>
 </html>
