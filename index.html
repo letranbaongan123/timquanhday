@@ -449,19 +449,26 @@ import {
   set
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
 const firebaseConfig = {
-
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
-
+  apiKey: "AIzaSyBlHodv8ISv9GrgAzIMQ2h5-wlS1_aiQdY",
+  authDomain: "ketnoi-quanhday-bf2b6.firebaseapp.com",
+  databaseURL: "https://ketnoi-quanhday-bf2b6-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "ketnoi-quanhday-bf2b6",
+  storageBucket: "ketnoi-quanhday-bf2b6.firebasestorage.app",
+  messagingSenderId: "482764895905",
+  appId: "1:482764895905:web:69a99c1a042ba5a072a2e0"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 const db = getDatabase(app);
 
 let trackingId = null;
