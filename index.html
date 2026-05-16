@@ -476,12 +476,12 @@ window.getLocation = function() {
     document.getElementById("groups");
 
   locationText.innerHTML =
-    "📍 Đang xác nhận vị trí...";
+    "📍 Đang tìm mi nơ ...";
 
   if (!navigator.geolocation) {
 
     locationText.innerHTML =
-      "❌ Trình duyệt không hỗ trợ GPS.";
+      "❌ Mi nơ vẫn đang ẩn nè ! ";
 
     return;
   }
@@ -507,7 +507,7 @@ window.getLocation = function() {
       groups.style.display = "grid";
 
       locationText.innerHTML =
-        "✅ Đã xác nhận vị trí thành công";
+        "✅ Các mi nơ đã thấy anh rồi, bắt đầu giao lưu thôi!";
 
       try {
 
@@ -543,7 +543,7 @@ window.getLocation = function() {
       console.log(error);
 
       locationText.innerHTML =
-        '❌ Không thể lấy vị trí';
+        '❌ Mi nơ vẫn đang ẩn nè !';
 
     },
 
