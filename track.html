@@ -95,9 +95,20 @@ onValue(
     const data = snapshot.val();
 
     if(data){
+      console.log("Realtime update:", data.lat, data.lng);
 
-      document.getElementById("map").src =
-        `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
+    const map = document.getElementById('map');
+
+    const newSrc =
+     `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
+
+if(map.src !== newSrc){
+
+  map.src = newSrc;
+
+}
+
+
 
     }
 
