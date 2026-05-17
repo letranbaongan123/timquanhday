@@ -33,8 +33,8 @@ iframe{
 </head>
 <body>
 
-<div class="top">
-  📍 Theo dõi hành trình realtime
+<<div class="top">
+  📍 Theo dõi vị trí mới nhất
 </div>
 
 <iframe id="map"></iframe>
@@ -47,11 +47,12 @@ from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getDatabase,
   ref,
-  onValue
+  get
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
+
 
   apiKey: "AIzaSyBlHodv8ISv9GrgAzIMQ2h5-wlS1_aiQdY",
 
@@ -82,39 +83,25 @@ const db = getDatabase(app);
 const params =
   new URLSearchParams(window.location.search);
 
-const id = params.get("id");
+const id = params.get('id');
 
-console.log("Tracking ID:", id);
+async function loadLocation(){
 
-onValue(
+  const snapshot =
+    await get(ref(db, 'locations/' + id));
 
-  ref(db, "locations/" + id),
+  const data = snapshot.val();
 
-  (snapshot) => {
+  if(data){
 
-    const data = snapshot.val();
-
-    if(data){
-      console.log("Realtime update:", data.lat, data.lng);
-
-    const map = document.getElementById('map');
-
-    const newSrc =
-     `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
-
-if(map.src !== newSrc){
-
-  map.src = newSrc;
-
-}
-
-
-
-    }
+    document.getElementById('map').src =
+      `https://maps.google.com/maps?q=${data.lat},${data.lng}&z=17&output=embed`;
 
   }
 
-);
+}
+
+loadLocation();
 
 </script>
 </body>
